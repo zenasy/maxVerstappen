@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Макс Ферстаппен - Чемпион Формулы 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --red-bull-red: #0600ef;
+            --red-bull-blue: #1e41ff;
+            --orange: #ff8700;
+            --dark-bg: #0a0a0a;
+            --light-text: #ffffff;
+            --gray-text: #cccccc;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, var(--dark-bg) 0%, var(--red-bull-red) 50%, var(--dark-bg) 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--orange);
+            margin-right: 10px;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1593941707882-a5bba5338fe2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-content h1 span {
+            color: var(--orange);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--gray-text);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red-bull-red);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid var(--red-bull-red);
+        }
+
+        .btn:hover {
+            background: transparent;
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: var(--orange);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--orange);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray-text);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(90deg, var(--dark-bg) 0%, #1a1a1a 100%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border-top: 4px solid var(--red-bull-red);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+
+        .stat-card h3 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            color: var(--gray-text);
+            font-size: 1.1rem;
+        }
+
+        /* Achievements Section */
+        .achievements-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .achievement-item {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            padding: 20px 30px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            border-left: 5px solid var(--orange);
+            transition: all 0.3s;
+        }
+
+        .achievement-item:hover {
+            background: rgba(255, 135, 0, 0.1);
+            transform: translateX(10px);
+        }
+
+        .achievement-year {
+            background: var(--red-bull-red);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-right: 30px;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .achievement-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 60px 0 30px;
+            border-top: 2px solid var(--red-bull-red);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--orange);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--orange);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.95);
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                transition: right 0.3s;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .stat-card h3 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-flag-checkered"></i>
+                    <span>MAX</span> VERSTAPPEN
+                </div>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">Биография</a></li>
+                    <li><a href="#stats">Статистика</a></li>
+                    <li><a href="#achievements">Достижения</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Макс <span>Ферстаппен</span></h1>
+                <p>Голландский автогонщик, трёхкратный чемпион мира Формулы-1 (2021, 2022, 2023), самый молодой гонщик в истории Формулы-1, пилот команды Oracle Red Bull Racing.</p>
+                <a href="#about" class="btn">Узнать больше</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Биография</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1638464328505-49d6ae8e6d5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Макс Ферстаппен">
+                </div>
+                
+                <div class="about-text">
+                    <h3>Карьера в Формуле-1</h3>
+                    <p>Макс Ферстаппен (родился 30 сентября 1997 года в Хасселте, Бельгия) — нидерландский автогонщик, выступающий в чемпионате мира Формулы-1 за команду Red Bull Racing. Дебютировал в Формуле-1 в 2015 году за команду Toro Rosso в возрасте 17 лет, став самым молодым гонщиком в истории чемпионата.</p>
+                    <p>В 2016 году перешёл в Red Bull Racing, где одержал свою первую победу на Гран-при Испании, став самым молодым победителем Гран-при в истории Формулы-1.</p>
+                    <p>С 2021 года Ферстаппен доминирует в чемпионате, выиграв три титула подряд (2021, 2022, 2023). Его агрессивный стиль вождения, скорость и способность бороться до последнего круга сделали его одним из самых ярких пилотов своего поколения.</p>
+                    <a href="#stats" class="btn">Статистика</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Статистика в Формуле-1</h2>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>3</h3>
+                    <p>Чемпионских титула</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-flag-checkered"></i>
+                    <h3>58</h3>
+                    <p>Побед в Гран-при</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-medal"></i>
+                    <h3>104</h3>
+                    <p>Подиумов</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>35</h3>
+                    <p>Поулов</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-stopwatch"></i>
+                    <h3>32</h3>
+                    <p>Быстрых кругов</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>190+</h3>
+                    <p>Гран-при (на 2024 год)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ключевые достижения</h2>
+            </div>
+            
+            <div class="achievements-list">
+                <div class="achievement-item">
+                    <div class="achievement-year">2023</div>
+                    <div class="achievement-text">
+                        <h4>Третий титул чемпиона мира</h4>
+                        <p>Доминирующий сезон с 19 победами из 22 Гран-при, установил новый рекорд по количеству побед в сезоне.</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-item">
+                    <div class="achievement-year">2022</div>
+                    <div class="achievement-text">
+                        <h4>Второй титул чемпиона мира</h4>
+                        <p>Завоевал титул с несколькими гонками до конца сезона, одержав 15 побед.</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-item">
+                    <div class="achievement-year">2021</div>
+                    <div class="achievement-text">
+                        <h4>Первый титул чемпиона мира</h4>
+                        <p>Стал чемпионом в драматичном финале сезона в Абу-Даби, обойдя Льюиса Хэмилтона на последнем круге.</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-item">
+                    <div class="achievement-year">2016</div>
+                    <div class="achievement-text">
+                        <h4>Самая молодая победа в Гран-при</h4>
+                        <p>Одержал первую победу на Гран-при Испании в возрасте 18 лет и 228 дней.</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-item">
+                    <div class="achievement-year">2015</div>
+                    <div class="achievement-text">
+                        <h4>Самый молодой дебютант</h4>
+                        <p>Дебютировал в Формуле-1 за команду Toro Rosso в возрасте 17 лет и 166 дней.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Галерея</h2>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1597334944668-84e52f7c433c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Ферстаппен в Red Bull">
+                    <div class="gallery-overlay">
+                        <p>Макс Ферстаппен за рулем Red Bull Racing</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1626698556636-83c5e8344e7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Празднование победы">
+                    <div class="gallery-overlay">
+                        <p>Празднование победы на Гран-при</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1635002733095-898c3c0a3b4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="На подиуме">
+                    <div class="gallery-overlay">
+                        <p>Ферстаппен на подиуме с трофеем</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <i class="fas fa-flag-checkered"></i>
+                        <span>MAX</span> VERSTAPPEN
+                    </div>
+                    <p>Сайт посвящен карьере и достижениям трехкратного чемпиона мира Формулы-1 Макса Ферстаппена.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Быстрые ссылки</h4>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">Биография</a></li>
+                        <li><a href="#stats">Статистика</a></li>
+                        <li><a href="#achievements">Достижения</a></li>
+                        <li><a href="#gallery">Галерея</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Команды</h4>
+                    <ul>
+                        <li><a href="#">Red Bull Racing (2016-н.в.)</a></li>
+                        <li><a href="#">Scuderia Toro Rosso (2015-2016)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Контакты</h4>
+                    <p>Фан-сайт Макса Ферстаппена</p>
+                    <p>Информация обновлена на 2024 год</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Max Verstappen Fan Site. Все права защищены. Этот сайт создан в ознакомительных целях.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add active class to nav links on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if(pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
